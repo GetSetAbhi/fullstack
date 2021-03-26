@@ -1,0 +1,16 @@
+<table class="table" *ngIf="( employee$ | async ) as employee">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Designation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{employee.id}}</th>
+            <td>{{employee.name}}</td>
+            <td>{{employee.designation}}</td>
+        </tr>
+    </tbody>
+</table>
