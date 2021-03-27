@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,9 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 	
 	@Autowired
 	private EntityManager entityManager;
+	
+	@Autowired
+	SessionFactory sessionFactory;
 
 	@Override
 	public Employee getEmployeeById(Long id) {
@@ -59,7 +63,11 @@ public class EmployeeDaoImpl implements EmployeeDAO {
 
 	@Override
 	public void deleteEmployee(Long id) {
-		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Employee e = session.load(Employee.class, id);
+		if (e != null) {
+			session.delete(e);
+		}
 		
 	}
 
