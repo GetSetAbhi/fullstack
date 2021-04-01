@@ -3,6 +3,7 @@ package com.example.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dao.EmployeeDAO;
@@ -60,7 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * Exception will be thrown but database commit will still take place.
 	 * 
 	 * **/
-	@Transactional(noRollbackFor = { DataIntegrityViolationException.class })
+	@Transactional(noRollbackFor = { DataIntegrityViolationException.class }, propagation = Propagation.REQUIRED)
 	public void test2(Employee employee) {
 		employeeDao.createEmployee(employee);
 		throw new DataIntegrityViolationException("Throwing exception for demoing Rollback!!!");
