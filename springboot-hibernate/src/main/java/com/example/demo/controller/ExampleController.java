@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.beansannodemo.DemoService;
 import com.example.demo.exceptions.ExampleException;
 import com.example.demo.model.Property;
 
@@ -18,6 +20,9 @@ import com.example.demo.model.Property;
 @RequestMapping(path = "/example")
 public class ExampleController {
 	
+	@Autowired
+	//@Qualifier("primaryDemoService")
+	DemoService demoService;
 	/**
 	 * 
 	 * This will demo exception
@@ -70,6 +75,16 @@ public class ExampleController {
 	 * **/
 	@GetMapping(path = "/filter")
 	public ResponseEntity<String> filtertest() {
+		return new ResponseEntity<>("Yaya", HttpStatus.OK);
+	}
+	
+	/**
+	 * 
+	 * This will show filters in logs
+	 * **/
+	@GetMapping(path = "/qualifiers")
+	public ResponseEntity<String> hello() {
+		demoService.hello();
 		return new ResponseEntity<>("Yaya", HttpStatus.OK);
 	}
 
