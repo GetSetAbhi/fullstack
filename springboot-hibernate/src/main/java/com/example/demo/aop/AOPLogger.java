@@ -1,5 +1,6 @@
 package com.example.demo.aop;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -66,6 +67,14 @@ public class AOPLogger {
 		}
 		pjp.proceed();
 		System.out.println("Inside the around with return pointcut method after pjp proceeds");
+	}
+	
+	@Before("@annotation(TestAOPAnnotation)")
+	public void beforeInterfaceTest(JoinPoint jp) {
+		System.out.println("Inside the before pointcut with annotation signature method");
+		for (Object param : jp.getArgs()) {
+			System.out.println("Value : " + param);
+		}
 	}
 
 }
