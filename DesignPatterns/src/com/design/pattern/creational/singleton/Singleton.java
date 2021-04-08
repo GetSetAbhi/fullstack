@@ -1,5 +1,7 @@
 package com.design.pattern.creational.singleton;
 
+import java.io.Serializable;
+
 public class Singleton {
 
 	public static void main(String[] args) {
@@ -20,7 +22,7 @@ public class Singleton {
 
 }
 
-class SingletonLazy {
+class SingletonLazy implements Serializable {
 	
 	private static SingletonLazy instance = null;
 	
@@ -32,6 +34,11 @@ class SingletonLazy {
 		}
 		return instance;
 	}
+	
+	 protected Object readResolve()
+	    {
+	        return instance;
+	    }
 
 }
 

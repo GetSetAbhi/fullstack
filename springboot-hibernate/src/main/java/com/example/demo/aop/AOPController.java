@@ -55,4 +55,10 @@ public class AOPController {
 		aopService.aroundTestWithParams(10, 20);
 		return new ResponseEntity<String>("Param", HttpStatus.OK);
 	}
+	
+	@GetMapping(path = "/beforeinterface")
+	public ResponseEntity<String> beforeParamAdvice() {
+		aopService.beforeTestWithInterface(10, 20);
+		return new ResponseEntity<String>("Interface", HttpStatus.OK);
+	}
 }

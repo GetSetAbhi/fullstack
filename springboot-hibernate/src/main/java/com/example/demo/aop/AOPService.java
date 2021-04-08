@@ -37,4 +37,9 @@ public class AOPService {
 	public void aroundTestWithParams(int a, int b) {
 		System.out.println("Inside aroundTestWithParams Test Method with param values " + a + " " + b);
 	}
+	
+	@TestAOPAnnotation
+	public void beforeTestWithInterface(int a, int b) {
+		System.out.println("Inside beforeTestWithannotation signature Test Method with param values " + a + " " + b);
+	}
 }
