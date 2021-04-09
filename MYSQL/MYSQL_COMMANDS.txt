@@ -1,5 +1,6 @@
 https://www.w3schools.com/sql/sql_intro.asp
-
+https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_union_all2
+https://www.tutorialspoint.com/sql/index.htm
 
 1) CREATE DATABASE
 	
@@ -55,3 +56,17 @@ https://www.w3schools.com/sql/sql_intro.asp
 	below query will display all records where id is between 1 & 3. (1 and 3 is inclusive)
 	
 	SELECT * FROM EMPLOYEE WHERE ID BETWEEN 1 AND 2;
+
+
+12) FIND THE NTH LASRGEST PARICE OR ANY VALUE ON PRODUCT TABLE
+
+	SELECT ProductName, min(PRICE) from (SELECT ProductName, Price from Products order by Price desc limit 5);
+	
+13) INNER JOIN EXAMPLE
+
+	inner join returns matching result from both tables
+	SELECT c.CustomerID, c.CustomerName, o.OrderID FROM Customers as c INNER JOIN Orders as o ON c.CustomerID = o.CustomerID order by c.CustomerID;
+	
+14) RIGHT JOIN RETURNS ALL RESULTS FROM TABLE ON THE RIGHT EVEN IF NO MATCHING RESULTS ARE FOUND ON THE TABLE ON LEFT
+
+15) LEFT JOIN RETURNS ALL RESULTS FROM TABLE ON THE LEFT EVEN IF NO MATCHING RESULTS ARE FOUND ON THE TABLE ON RIGHT
