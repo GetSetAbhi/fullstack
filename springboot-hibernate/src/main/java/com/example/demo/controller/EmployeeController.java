@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.demo.model.Email;
+import com.example.demo.model.Emails;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Employees;
 import com.example.demo.service.EmployeeServiceImpl;
@@ -29,6 +32,15 @@ public class EmployeeController {
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
 		Employee e = service.getEmployeeById(id);
 		return new ResponseEntity<Employee>(e, HttpStatus.OK);
+	}
+	
+	@GetMapping(path = "/employee/{id}/emails")
+	public ResponseEntity<Emails> getEmployeeEmails(@PathVariable Long id) {
+		Employee e = service.getEmployeeById(id);
+		List<Email> mails = e.getEmails();
+		Emails emails = new Emails();
+		emails.setEmails(mails);
+		return new ResponseEntity<Emails>(emails, HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "/employees")
