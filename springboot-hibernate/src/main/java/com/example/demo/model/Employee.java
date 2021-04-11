@@ -1,14 +1,20 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/**
+ * 
+ * An employee can have many emails
+ * 
+ * ***/
 @Entity
 @Table(name = "employees")
 public class Employee {
@@ -21,9 +27,12 @@ public class Employee {
 	
 	@Column(name="name") 
 	private String name;
-	
+
 	@Column(name="designation") 
 	private String designation;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Email> emails;
 	
 	
 	public Long getId() {
@@ -43,6 +52,13 @@ public class Employee {
 	}
 	public void setDesignation(String designation) {
 		this.designation = designation;
+	}
+	
+	public List<Email> getEmails() {
+		return emails;
+	}
+	public void setEmails(List<Email> emails) {
+		this.emails = emails;
 	}
 	
 	@Override
