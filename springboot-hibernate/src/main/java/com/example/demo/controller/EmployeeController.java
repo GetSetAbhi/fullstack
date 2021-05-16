@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -35,7 +36,7 @@ public class EmployeeController {
 	}
 	
 	@GetMapping(path = "/employee/{id}/emails")
-	public ResponseEntity<Emails> getEmployeeEmails(@PathVariable Long id) {
+	public ResponseEntity<Emails> getEmployeeEmails(@PathVariable Long id, @RequestParam(name = "bro", defaultValue = "bro") String bro) {
 		Employee e = service.getEmployeeById(id);
 		List<Email> mails = e.getEmails();
 		Emails emails = new Emails();
