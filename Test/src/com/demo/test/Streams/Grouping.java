@@ -22,6 +22,8 @@ public class Grouping {
 		list.add(four);
 		
 		Map<Integer, List<String>> map = list.stream().collect(Collectors.groupingBy(Movie::getYear, Collectors.mapping(Movie::getName, Collectors.toList())));
+		
+		Map<Integer, List<Movie>> map2 = list.stream().collect(Collectors.groupingBy(Movie::getYear, Collectors.toList()));
 
 		Set<Integer> keySet = map.keySet();
 		if (!keySet.isEmpty()) {
@@ -33,6 +35,10 @@ public class Grouping {
 				}
 				System.out.println("############################");
 			}
+		}
+		
+		for (Map.Entry<Integer, List<Movie>> e : map2.entrySet()) {
+			
 		}
 	}
 
