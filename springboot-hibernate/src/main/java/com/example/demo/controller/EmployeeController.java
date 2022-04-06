@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.demo.dao.EmailRepository;
 import com.example.demo.model.Email;
 import com.example.demo.model.Emails;
 import com.example.demo.model.Employee;
@@ -28,6 +29,9 @@ public class EmployeeController {
 	
 	@Autowired
 	EmployeeServiceImpl service;
+	
+	@Autowired
+	EmailRepository emailService;
 	
 	@GetMapping(path = "/employee/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
@@ -54,6 +58,24 @@ public class EmployeeController {
 	@PostMapping("/create/employee")
 	public ResponseEntity<Object> createEmployee(@RequestBody Employee employee) {
 		service.createEmployee(employee);
+		
+		URI location = ServletUriComponentsBuilder
+			.fromCurrentRequest()
+			.path("/{id}")
+			.buildAndExpand(employee.getId()).toUri();
+	
+		return ResponseEntity.created(location).build();
+	}
+	
+	@PostMapping("/create/email")
+	public ResponseEntity<Object> createEmployee(
+			@RequestParam(name = "employeeId") Long id, @RequestBody String email) {
+		
+		Employee employee = service.getEmployeeById(id);
+		Email emailObj = new Email();
+		emailObj.setEmail(email);
+		emailObj.setUser(employee);
+		emailService.save(emailObj);
 		
 		URI location = ServletUriComponentsBuilder
 			.fromCurrentRequest()

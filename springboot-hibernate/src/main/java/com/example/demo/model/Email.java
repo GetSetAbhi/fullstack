@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * 
  * One user can have many emails
- * so many emails can share same email.
+ * so many emails can share same user.
  * 
  * ***/
 @Entity
