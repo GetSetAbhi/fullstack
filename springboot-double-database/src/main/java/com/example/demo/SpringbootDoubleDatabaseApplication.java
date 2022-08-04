@@ -9,5 +9,4 @@ public class SpringbootDoubleDatabaseApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootDoubleDatabaseApplication.class, args);
 	}
-
 }

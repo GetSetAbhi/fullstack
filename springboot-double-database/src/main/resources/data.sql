@@ -1,14 +1,28 @@
-DROP TABLE IF EXISTS student cascade;
-DROP TABLE IF EXISTS teacher cascade;
+create database STUDENT;
 
-CREATE TABLE employees (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  name VARCHAR(250) NOT NULL,
-  age INT NOT NULL,
-  department VARCHAR(250) NOT NULL,
-  salary INT NOT NULL
+use STUDENT;
+
+CREATE TABLE STUDENT (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  age INT NOT NULL
 );
 
-insert into employees(id,name,age, department, salary) values(1,'Abhishek', 25 , 'Engineer', 2500);
-insert into employees(id,name,age, department, salary) values(2,'Raina', 25, 'PM', 2000);
-insert into employees(id,name,age, department, salary) values(3,'Misc', 25, 'Management', 3000);
+insert into STUDENT(id,name,age) values (1,'Abhishek', 25);
+insert into STUDENT(id,name,age) values (2,'Raina', 25);
+insert into STUDENT(id,name,age) values (3,'Abhi', 25);
+
+
+create database TEACHER;
+
+use TEACHER;
+
+CREATE TABLE TEACHER (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  age INT NOT NULL
+);
+
+insert into TEACHER(id,name,age) values (1,'Archana', 25);
+insert into TEACHER(id,name,age) values (2,'Nirmal', 25);
+insert into TEACHER(id,name,age) values (3,'Rathore', 25);
